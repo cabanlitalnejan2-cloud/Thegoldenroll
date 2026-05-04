@@ -1,192 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>The Golden Roll</title>
 
+<!-- Luxury Font (Google Fonts) -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
 <style>
 
+/* ===== GENERAL STYLE ===== */
 body{
     margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#111;
-    color:white;
+    background:#0b0b0b;
+    color:#f5f5f5;
+    font-family: 'Montserrat', sans-serif;
 }
 
+/* ===== HEADER ===== */
 header{
-    background:#000;
-    padding:20px;
     text-align:center;
+    padding:40px 20px;
+    background:#000;
+    border-bottom:1px solid #222;
 }
 
 header h1{
-    color:#d4af37;
-    font-size:40px;
+    font-family: 'Playfair Display', serif;
+    font-size:42px;
+    color:#d4af37; /* gold */
     margin:0;
+    letter-spacing:2px;
 }
 
 header p{
-    font-size:16px;
-    color:#ccc;
+    color:#aaa;
+    margin-top:10px;
+    font-size:14px;
 }
 
-nav{
-    background:#1a1a1a;
-    text-align:center;
-    padding:10px;
-}
-
-nav a{
-    color:#d4af37;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
+/* ===== HERO SECTION ===== */
 .hero{
-    padding:80px 20px;
     text-align:center;
-    background:linear-gradient(#000,#222);
+    padding:60px 20px;
+    background:linear-gradient(180deg,#000,#111);
 }
 
 .hero h2{
-    font-size:36px;
+    font-family: 'Playfair Display', serif;
+    font-size:32px;
     color:#d4af37;
 }
 
+.hero p{
+    color:#bbb;
+}
+
+/* ===== IMAGE HERO ===== */
+.hero img{
+    margin-top:25px;
+    width:300px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* ===== SECTION ===== */
 .section{
-    padding:50px 20px;
-    max-width:900px;
+    padding:60px 20px;
+    max-width:1000px;
     margin:auto;
 }
 
 .section h3{
+    font-family: 'Playfair Display', serif;
     color:#d4af37;
-    font-size:28px;
+    font-size:26px;
+    margin-bottom:20px;
 }
 
-.menu{
+/* ===== PRODUCT GRID ===== */
+.grid{
     display:flex;
-    gap:20px;
     flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
 }
 
 .card{
-    background:#1b1b1b;
-    padding:20px;
-    border-radius:10px;
-    flex:1;
-    min-width:200px;
+    background:#141414;
+    width:260px;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.5);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
 }
 
 .card h4{
     color:#d4af37;
+    margin:10px;
+    font-family: 'Playfair Display', serif;
 }
 
+.card p{
+    margin:10px;
+    color:#bbb;
+    font-size:14px;
+}
+
+/* ===== FOOTER ===== */
 footer{
-    background:#000;
     text-align:center;
-    padding:20px;
-    color:#aaa;
-}
-
-button{
-    background:#d4af37;
-    border:none;
-    padding:10px 20px;
-    font-weight:bold;
-    cursor:pointer;
+    padding:30px;
+    border-top:1px solid #222;
+    color:#777;
+    font-size:13px;
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-<h1>The Golden Roll</h1>
-<p>Filipino Roots • Modern Flavors</p>
+    <h1>The Golden Roll</h1>
+    <p>Filipino Roots • Modern Luxury Flavors</p>
 </header>
 
-<nav>
-<a href="#about">About</a>
-<a href="#menu">Menu</a>
-<a href="#business">Business</a>
-<a href="#contact">Contact</a>
-</nav>
-
+<!-- HERO -->
 <section class="hero">
-<h2>Luxurious Street Snack Experience</h2>
-<p>Golden crispy rolls inspired by Filipino flavors.</p>
-<button>Order Soon</button>
+    <h2>Luxury Street Snack Experience</h2>
+    <p>Crafted golden rolls with premium Filipino-inspired flavors</p>
+
+    <!-- YOUR UPLOADED IMAGE -->
+    <img src="681975355_26331801386522110_7886286037163583750_n.jpg" alt="Golden Roll Product">
 </section>
 
-<section id="about" class="section">
-<h3>About The Golden Roll</h3>
-<p>
-The Golden Roll is a modern Filipino snack brand that transforms traditional street
-snacks into a luxurious experience. Our rolls are made with carefully selected
-ingredients and exciting flavors that combine Filipino heritage with modern food trends.
-</p>
+<!-- ABOUT -->
+<section class="section">
+    <h3>About The Brand</h3>
+    <p>
+        The Golden Roll is a premium Filipino snack concept that transforms
+        everyday street food into a luxurious, modern experience. Each roll
+        is crafted with care, flavor innovation, and aesthetic presentation
+        designed for today’s market.
+    </p>
 </section>
 
-<section id="menu" class="section">
-<h3>Popular Flavors</h3>
+<!-- PRODUCTS -->
+<section class="section">
+    <h3>Signature Rolls</h3>
 
-<div class="menu">
+    <div class="grid">
 
-<div class="card">
-<h4>Classic Golden Roll</h4>
-<p>Crispy golden roll with traditional sweet filling.</p>
-<p>Price: ₱</p>
-</div>
+        <div class="card">
+            <img src="681975355_26331801386522110_7886286037163583750_n.jpg">
+            <h4>Classic Golden Roll</h4>
+            <p>Traditional sweet filling wrapped in a crispy golden shell.</p>
+        </div>
 
-<div class="card">
-<h4>Chocolate Delight</h4>
-<p>Rich chocolate filling wrapped in crispy golden roll.</p>
-<p>Price: ₱</p>
-</div>
+        <div class="card">
+            <img src="681975355_26331801386522110_7886286037163583750_n.jpg">
+            <h4>Chocolate Luxe Roll</h4>
+            <p>Rich chocolate cream with premium texture finish.</p>
+        </div>
 
-<div class="card">
-<h4>Ube Cream Roll</h4>
-<p>A modern twist featuring the iconic Filipino ube flavor.</p>
-<p>Price: ₱</p>
-</div>
+        <div class="card">
+            <img src="681975355_26331801386522110_7886286037163583750_n.jpg">
+            <h4>Ube Velvet Roll</h4>
+            <p>Modern Filipino ube flavor with a smooth creamy core.</p>
+        </div>
 
-</div>
-
+    </div>
 </section>
 
-<section id="business" class="section">
-<h3>About the Business</h3>
+<!-- BUSINESS INFO -->
+<section class="section">
+    <h3>Business Information</h3>
 
-<p><strong>Business Name:</strong> Golden Touch Inc.</p>
-<p><strong>Address:</strong> East Lane, Cainta Rizal</p>
+    <p><b>Business Name:</b> Golden Touch Inc.</p>
+    <p><b>Brand:</b> The Golden Roll</p>
+    <p><b>Location:</b> East Lane, Cainta, Rizal</p>
 
-<p>
-Golden Touch Inc. is dedicated to bringing innovative snack concepts to the
-Filipino market. The Golden Roll is our flagship product designed for
-street stalls, food kiosks, and future franchise opportunities.
-</p>
-
+    <p>
+        A startup food concept focused on bringing premium street snacks
+        into modern Filipino food culture with scalable business potential.
+    </p>
 </section>
 
-<section id="contact" class="section">
-<h3>Contact Us</h3>
-
-<p>Follow us for updates on our official launch.</p>
-
-<p>
-Facebook: The Golden Roll<br>
-Instagram: @goldenrollph
-</p>
-
-</section>
-
+<!-- FOOTER -->
 <footer>
-<p>© 2026 The Golden Roll • Golden Touch Inc.</p>
+    © 2026 The Golden Roll • Golden Touch Inc.
 </footer>
 
 </body>
