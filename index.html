@@ -1,211 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>The Golden Roll</title>
 
-<!-- Luxury Font (Google Fonts) -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
-
 <style>
 
-/* ===== GENERAL STYLE ===== */
 body{
-    margin:0;
-    background:#0b0b0b;
-    color:#f5f5f5;
-    font-family: 'Montserrat', sans-serif;
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background:#0f0f0f;
+color:white;
+scroll-behavior:smooth;
 }
 
-/* ===== HEADER ===== */
-header{
-    text-align:center;
-    padding:40px 20px;
-    background:#000;
-    border-bottom:1px solid #222;
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:#111;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+z-index:1000;
+border-bottom:1px solid gold;
 }
 
-header h1{
-    font-family: 'Playfair Display', serif;
-    font-size:42px;
-    color:#d4af37; /* gold */
-    margin:0;
-    letter-spacing:2px;
+nav img{
+height:40px;
 }
 
-header p{
-    color:#aaa;
-    margin-top:10px;
-    font-size:14px;
+nav ul{
+list-style:none;
+display:flex;
+gap:30px;
 }
 
-/* ===== HERO SECTION ===== */
+nav ul li{
+cursor:pointer;
+color:#d4af37;
+font-weight:600;
+}
+
+nav ul li:hover{
+color:white;
+}
+
+/* SECTIONS */
+
+section{
+min-height:100vh;
+padding:120px 60px 60px;
+}
+
+/* HERO */
+
 .hero{
-    text-align:center;
-    padding:60px 20px;
-    background:linear-gradient(180deg,#000,#111);
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-wrap:wrap;
 }
 
-.hero h2{
-    font-family: 'Playfair Display', serif;
-    font-size:32px;
-    color:#d4af37;
+.hero-text{
+max-width:500px;
 }
 
-.hero p{
-    color:#bbb;
+.hero-text h1{
+font-size:50px;
+color:#d4af37;
+margin-bottom:10px;
 }
 
-/* ===== IMAGE HERO ===== */
+.tagline{
+font-size:18px;
+letter-spacing:2px;
+margin-bottom:30px;
+}
+
+.button{
+background:#d4af37;
+color:black;
+padding:12px 25px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.button:hover{
+background:white;
+}
+
+/* HERO IMAGE */
+
 .hero img{
-    margin-top:25px;
-    width:300px;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+width:450px;
+border-radius:10px;
 }
 
-/* ===== SECTION ===== */
-.section{
-    padding:60px 20px;
-    max-width:1000px;
-    margin:auto;
+/* ABOUT */
+
+.about{
+max-width:900px;
+line-height:1.7;
 }
 
-.section h3{
-    font-family: 'Playfair Display', serif;
-    color:#d4af37;
-    font-size:26px;
-    margin-bottom:20px;
-}
+/* PRODUCTS */
 
-/* ===== PRODUCT GRID ===== */
-.grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
+.products{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
 }
 
 .card{
-    background:#141414;
-    width:260px;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,0.5);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
+background:#1b1b1b;
+padding:20px;
+border-radius:10px;
+width:220px;
+text-align:center;
+border:1px solid #333;
 }
 
 .card img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
+width:100%;
+border-radius:8px;
 }
 
-.card h4{
-    color:#d4af37;
-    margin:10px;
-    font-family: 'Playfair Display', serif;
+/* TRIAL */
+
+.trial{
+background:#141414;
+padding:30px;
+border-radius:10px;
 }
 
-.card p{
-    margin:10px;
-    color:#bbb;
-    font-size:14px;
+/* CONTACT */
+
+.contact{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
 }
 
-/* ===== FOOTER ===== */
+.contact-info{
+max-width:400px;
+}
+
 footer{
-    text-align:center;
-    padding:30px;
-    border-top:1px solid #222;
-    color:#777;
-    font-size:13px;
+text-align:center;
+padding:20px;
+border-top:1px solid #333;
+color:#aaa;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
-    <h1>The Golden Roll</h1>
-    <p>Filipino Roots • Modern Luxury Flavors</p>
-</header>
 
-<!-- HERO -->
-<section class="hero">
-    <h2>Luxury Street Snack Experience</h2>
-    <p>Crafted golden rolls with premium Filipino-inspired flavors</p>
+<!-- NAVIGATION -->
 
-    <!-- YOUR UPLOADED IMAGE -->
-    <img src="681975355_26331801386522110_7886286037163583750_n.jpg" alt="Golden Roll Product">
+<nav>
+
+<img src="LogoThegoldenroll.png">
+
+<ul>
+<li onclick="scrollToSection('home')">Home</li>
+<li onclick="scrollToSection('about')">About</li>
+<li onclick="scrollToSection('products')">Products</li>
+<li onclick="scrollToSection('trial')">Trial Run</li>
+<li onclick="scrollToSection('contact')">Contact</li>
+</ul>
+
+</nav>
+
+
+
+<!-- HOME -->
+
+<section id="home">
+
+<div class="hero">
+
+<div class="hero-text">
+
+<h1>The Golden Roll</h1>
+
+<div class="tagline">
+Filipino Roots • Modern Flavors
+</div>
+
+<p>
+Handcrafted Tausug crêpes with a contemporary twist—rich caramelized coconut filling infused with modern Ube and Matcha flavors.
+</p>
+
+<br>
+
+<a class="button" onclick="scrollToSection('survey')">Take Our Survey</a>
+
+</div>
+
+<img src="681975355_26331801386522110_7886286037163583750_n.jpg">
+
+</div>
+
 </section>
+
+
 
 <!-- ABOUT -->
-<section class="section">
-    <h3>About The Brand</h3>
-    <p>
-        The Golden Roll is a premium Filipino snack concept that transforms
-        everyday street food into a luxurious, modern experience. Each roll
-        is crafted with care, flavor innovation, and aesthetic presentation
-        designed for today’s market.
-    </p>
+
+<section id="about">
+
+<h2 style="color:#d4af37;">Our Story</h2>
+
+<div class="about">
+
+<p>
+The Golden Roll was created with one simple vision: to celebrate and elevate Filipino heritage through food.
+Inspired by the traditional Filipino delicacy Daral, our brand brings a modern twist to a beloved local snack.
+</p>
+
+<p>
+While many Filipino delicacies remain rooted in tradition, we believe they can also evolve with creativity and innovation while still honoring their cultural origins.
+</p>
+
+<p>
+Our goal is to introduce Daral to a wider audience and allow more Filipinos to rediscover the beauty of local delicacies.
+</p>
+
+<br>
+
+<h2 style="color:#d4af37;">What is Daral?</h2>
+
+<p>
+Daral is a traditional Filipino dessert made from a thin crepe rolled into a cylindrical shape and filled with sweetened coconut.
+</p>
+
+<p>
+It originated from the Tausug people of the Sulu Archipelago.
+</p>
+
+<p>
+The wrapper is made from glutinous rice batter mixed with coconut milk while the filling is shredded coconut cooked with sugar called hinti.
+</p>
+
+</div>
+
 </section>
+
+
 
 <!-- PRODUCTS -->
-<section class="section">
-    <h3>Signature Rolls</h3>
 
-    <div class="grid">
+<section id="products">
 
-        <div class="card">
-            <img src="681975355_26331801386522110_7886286037163583750_n.jpg">
-            <h4>Classic Golden Roll</h4>
-            <p>Traditional sweet filling wrapped in a crispy golden shell.</p>
-        </div>
+<h2 style="color:#d4af37;">Our Flavors</h2>
 
-        <div class="card">
-            <img src="681975355_26331801386522110_7886286037163583750_n.jpg">
-            <h4>Chocolate Luxe Roll</h4>
-            <p>Rich chocolate cream with premium texture finish.</p>
-        </div>
+<br>
 
-        <div class="card">
-            <img src="681975355_26331801386522110_7886286037163583750_n.jpg">
-            <h4>Ube Velvet Roll</h4>
-            <p>Modern Filipino ube flavor with a smooth creamy core.</p>
-        </div>
+<div class="products">
 
-    </div>
+<div class="card">
+<img src="Gemini_Generated_Image_66he0l66he0l66he.png">
+<h3>Classic</h3>
+<p>Traditional coconut filling</p>
+</div>
+
+<div class="card">
+<img src="Ubedaral0505.png">
+<h3>Ube</h3>
+<p>Sweet purple yam twist</p>
+</div>
+
+<div class="card">
+<img src="Matchadaral0505.png">
+<h3>Matcha</h3>
+<p>Modern green tea flavor</p>
+</div>
+
+<div class="card">
+<img src="ClassicDaral0505.png">
+<h3>Packed</h3>
+<p>₱39 per pack (3 pcs)</p>
+</div>
+
+</div>
+
+<br>
+
+<p>₱15 per piece • ₱39 per pack</p>
+
+<p>Ingredients: Coconut, Sugar, Matcha, Condensed Milk, Ube, Vanilla Extract, Oil, Flour, Water.</p>
+
 </section>
 
-<!-- BUSINESS INFO -->
-<section class="section">
-    <h3>Business Information</h3>
 
-    <p><b>Business Name:</b> Golden Touch Inc.</p>
-    <p><b>Brand:</b> The Golden Roll</p>
-    <p><b>Location:</b> East Lane, Cainta, Rizal</p>
 
-    <p>
-        A startup food concept focused on bringing premium street snacks
-        into modern Filipino food culture with scalable business potential.
-    </p>
+<!-- TRIAL RUN -->
+
+<section id="trial">
+
+<h2 style="color:#d4af37;">Trial Run</h2>
+
+<div class="trial">
+
+<p><b>Trial Run Date:</b> May 04 – May 16</p>
+
+<p><b>Test Location:</b> Taytay Tiangge</p>
+
+<p><b>Target Production:</b> 50 – 60 pcs</p>
+
+<p>
+During this trial period, we aim to gather customer feedback, evaluate production capacity, and analyze market demand.
+</p>
+
+</div>
+
+<br>
+
+<h2 style="color:#d4af37;">Survey</h2>
+
+<div id="survey">
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSey_WJJ1exBpzRoGpzhQqt-2P3ane4iZGwAK6XJkVBefV-2vQ/viewform?embedded=true" width="700" height="520"></iframe>
+
+</div>
+
 </section>
 
-<!-- FOOTER -->
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2 style="color:#d4af37;">Contact Us</h2>
+
+<div class="contact">
+
+<div class="contact-info">
+
+<p><b>Business:</b> Golden Touch Inc.</p>
+
+<p><b>Phone:</b> +639467307758</p>
+
+<p><b>Address:</b> 123 Manila East Road, Brgy San Juan Taytay, Rizal</p>
+
+<p>Follow us for updates.</p>
+
+<img src="The Golden Roll.png" width="150">
+
+</div>
+
+</div>
+
+</section>
+
+
+
 <footer>
-    © 2026 The Golden Roll • Golden Touch Inc.
+
+© 2026 Golden Touch Inc.
+
 </footer>
 
+
+
+<script>
+
+function scrollToSection(sectionId){
+document.getElementById(sectionId).scrollIntoView({
+behavior:'smooth'
+});
+}
+
+</script>
+
 </body>
+</html>
 </html>
