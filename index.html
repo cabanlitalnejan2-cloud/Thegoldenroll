@@ -1,406 +1,894 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Golden Roll</title>
 
-<title>The Golden Roll – Daral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <style>
 
+:root{
+    --gold:#d4a75f;
+    --gold-light:#f3d5a1;
+    --dark:#090707;
+    --brown:#140d08;
+    --white:#f7f2eb;
+}
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-font-family:Poppins, sans-serif;
-background:#0f0f0f;
-color:#eee;
-line-height:1.6;
-}
-
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
-
-section{
-padding:80px 0;
-}
-
-h1,h2,h3{
-font-family:"Playfair Display",serif;
-color:#d4af37;
+    background:var(--dark);
+    color:white;
+    font-family:'Poppins', sans-serif;
+    overflow-x:hidden;
 }
 
 img{
-width:100%;
-display:block;
-border-radius:10px;
+    width:100%;
+    display:block;
+    object-fit:cover;
 }
 
-.btn{
-display:inline-block;
-padding:12px 26px;
-background:#d4af37;
-color:#000;
-text-decoration:none;
-border-radius:30px;
-font-weight:500;
-margin-top:15px;
-transition:0.3s;
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:0 24px;
 }
 
-.btn:hover{
-background:#f1cc5d;
+/* =========================
+   PAGE SYSTEM (SPA)
+========================= */
+
+.page{
+    display:none;
+    opacity:0;
+    transform:translateY(15px);
+    transition:all .5s ease;
+    min-height:100vh;
 }
 
-/* NAVBAR */
+.page.active{
+    display:block;
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   NAVBAR
+========================= */
 
 header{
-background:#0b0b0b;
-border-bottom:1px solid #222;
-position:sticky;
-top:0;
-z-index:1000;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,0.55);
+    border-bottom:1px solid rgba(212,167,95,.2);
 }
 
 .navbar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:18px 0;
+    height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .logo{
-height:45px;
+    font-family:'Playfair Display', serif;
+    color:var(--gold-light);
+    font-size:2rem;
+    font-weight:700;
+    letter-spacing:2px;
+    text-align:center;
 }
 
 .nav-links{
-display:flex;
-gap:25px;
+    display:flex;
+    gap:20px;
 }
 
-.nav-links a{
-text-decoration:none;
-color:#eee;
-font-size:14px;
+.nav-links button{
+    background:none;
+    border:none;
+    color:var(--gold-light);
+    font-size:1rem;
+    cursor:pointer;
+    font-weight:500;
+    transition:.3s;
+    position:relative;
 }
 
-.nav-links a:hover{
-color:#d4af37;
+.nav-links button:hover{
+    color:white;
 }
 
-/* HERO */
+.nav-links button::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0%;
+    height:2px;
+    background:var(--gold);
+    transition:.3s;
+}
+
+.nav-links button:hover::after{
+    width:100%;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
 
 .hero{
-display:grid;
-grid-template-columns:1fr 1fr;
-align-items:center;
-gap:40px;
+    position:relative;
+    min-height:95vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
 }
 
-.hero-text h1{
-font-size:48px;
-margin-bottom:10px;
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    to bottom,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.35),
+    rgba(0,0,0,.85)
+    ),
+    url('681975355_26331801386522110_7886286037163583750_n.jpg');
+
+    background-size:cover;
+    background-position:center;
+    filter:blur(1px);
+    transform:scale(1.05);
 }
 
-.hero-text p{
-color:#bbb;
-margin-bottom:20px;
+.hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    box-shadow:inset 0 0 180px rgba(0,0,0,.85);
 }
 
-/* ABOUT */
-
-.about-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center;
+.hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:850px;
+    padding:40px 20px;
 }
 
-/* PRODUCTS */
+.hero-title-small{
+    color:var(--gold-light);
+    font-family:'Playfair Display', serif;
+    letter-spacing:6px;
+    margin-bottom:10px;
+}
+
+.hero-title{
+    font-family:'Playfair Display', serif;
+    font-size:5rem;
+    line-height:1;
+    color:var(--gold);
+    margin-bottom:15px;
+    text-shadow:0 4px 20px rgba(0,0,0,.7);
+}
+
+.hero-subtitle{
+    color:#d6b3ff;
+    font-size:1.2rem;
+    letter-spacing:5px;
+    margin-bottom:25px;
+}
+
+.divider{
+    width:120px;
+    height:2px;
+    background:linear-gradient(to right, transparent, var(--gold), transparent);
+    margin:0 auto 30px;
+}
+
+.gold-btn{
+    padding:15px 34px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(135deg, var(--gold-light), var(--gold));
+    color:#2b1700;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    font-size:1rem;
+}
+
+.gold-btn:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 12px 30px rgba(212,167,95,.3);
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+    background:#0f0907;
+    padding:70px 0;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:30px;
+    text-align:center;
+}
+
+.feature-item i{
+    color:var(--gold);
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.feature-item h3{
+    color:var(--gold-light);
+    font-size:1rem;
+    font-weight:500;
+    line-height:1.5;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products{
+    padding:100px 0;
+    background:#f5f0eb;
+}
+
+.section-title{
+    text-align:center;
+    font-size:3rem;
+    color:#1f1f1f;
+    margin-bottom:60px;
+    font-family:'Playfair Display', serif;
+}
 
 .product-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:35px;
 }
 
 .product-card{
-background:#161616;
-padding:20px;
-border-radius:12px;
-text-align:center;
-border:1px solid #222;
+    background:white;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    transition:.4s;
 }
 
-.product-card h3{
-margin:10px 0;
+.product-card:hover{
+    transform:translateY(-10px);
 }
 
-/* TRIAL */
-
-.trial{
-text-align:center;
+.product-image{
+    height:340px;
+    overflow:hidden;
 }
 
-.trial-box{
-margin-top:30px;
-background:#161616;
-padding:40px;
-border-radius:10px;
+.product-image img{
+    height:100%;
+    transition:.5s;
 }
 
-/* CONTACT */
-
-.contact-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center;
+.product-card:hover img{
+    transform:scale(1.06);
 }
 
-.contact-info p{
-margin-bottom:10px;
+.product-info{
+    padding:24px;
+    text-align:center;
 }
 
-/* FOOTER */
+.product-info h3{
+    color:#111;
+    font-size:1.4rem;
+    font-family:'Playfair Display', serif;
+}
+
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.about-page{
+    position:relative;
+    padding:100px 0;
+    overflow:hidden;
+}
+
+.about-page::before{
+    content:'';
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.88),
+    rgba(0,0,0,.90)
+    ),
+    url('BGabout.png');
+
+    background-size:cover;
+    background-position:center;
+    opacity:.22;
+}
+
+.about-wrapper{
+    position:relative;
+    z-index:2;
+}
+
+.story-card{
+    background:rgba(14,10,8,.82);
+    border:1px solid rgba(212,167,95,.15);
+    padding:50px;
+    border-radius:20px;
+    margin-bottom:40px;
+    backdrop-filter:blur(4px);
+}
+
+.story-card h2{
+    font-family:'Playfair Display', serif;
+    color:var(--gold);
+    font-size:2.5rem;
+    margin-bottom:25px;
+}
+
+.story-card p{
+    line-height:2;
+    color:#eee;
+    font-size:1rem;
+}
+
+/* =========================
+   SURVEY PAGE
+========================= */
+
+.survey-page{
+    padding:80px 0;
+    background:#120c08;
+}
+
+.survey-title{
+    text-align:center;
+    margin-bottom:40px;
+    font-family:'Playfair Display', serif;
+    font-size:3rem;
+    color:var(--gold);
+}
+
+.form-wrapper{
+    background:#1b120d;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(212,167,95,.2);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+iframe{
+    width:100%;
+    height:900px;
+    border:none;
+}
+
+.return-btn{
+    text-align:center;
+    margin-top:40px;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-background:#0a0a0a;
-text-align:center;
-padding:30px;
-border-top:1px solid #222;
-font-size:14px;
+    background:#080606;
+    border-top:1px solid rgba(212,167,95,.15);
+    padding:70px 0;
 }
 
-/* MOBILE */
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+}
 
-@media(max-width:900px){
+.footer-title{
+    font-family:'Playfair Display', serif;
+    color:var(--gold);
+    margin-bottom:20px;
+    font-size:2rem;
+}
+
+.footer-text{
+    line-height:2;
+    color:#ddd;
+}
+
+.socials{
+    display:flex;
+    gap:18px;
+    margin-top:20px;
+}
+
+.socials a{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(212,167,95,.1);
+    color:var(--gold);
+    text-decoration:none;
+    transition:.3s;
+}
+
+.socials a:hover{
+    background:var(--gold);
+    color:black;
+    transform:translateY(-4px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+.hero-title{
+    font-size:4rem;
+}
+
+.feature-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.product-grid{
+    grid-template-columns:1fr;
+}
+
+.footer-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    justify-content:center;
+    gap:15px;
+    height:auto;
+    padding:18px 0;
+}
+
+.logo{
+    font-size:1.6rem;
+}
 
 .hero{
-grid-template-columns:1fr;
-text-align:center;
+    min-height:85vh;
 }
 
-.about-grid{
-grid-template-columns:1fr;
+.hero-title{
+    font-size:3rem;
 }
 
-.contact-grid{
-grid-template-columns:1fr;
+.hero-subtitle{
+    font-size:.95rem;
+    letter-spacing:3px;
 }
 
-.nav-links{
-display:none;
+.feature-grid{
+    grid-template-columns:1fr;
+}
+
+.story-card{
+    padding:30px;
+}
+
+.section-title,
+.survey-title{
+    font-size:2.3rem;
 }
 
 }
 
 </style>
 </head>
-
 <body>
 
 <header>
-<div class="container navbar">
+    <div class="container navbar">
 
-<img src="LogoThegoldenroll.png" class="logo">
+        <div class="nav-links">
+            <button onclick="showPage('home')">Home</button>
+            <button onclick="showPage('about')">About</button>
+        </div>
 
-<nav class="nav-links">
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#products">Products</a>
-<a href="#trial">Trial Run</a>
-<a href="#contact">Contact</a>
-</nav>
+        <div class="logo">THE GOLDEN ROLL</div>
 
-</div>
+        <div class="nav-links">
+            <button onclick="showPage('survey')">Survey</button>
+        </div>
+
+    </div>
 </header>
 
-<!-- HERO -->
+<!-- =========================
+     HOME PAGE
+========================= -->
 
-<section id="home">
-<div class="container hero">
+<section id="home" class="page active">
 
-<div class="hero-text">
-<h1>The Golden Roll</h1>
-<p>Filipino Roots • Modern Flavors</p>
+    <section class="hero">
 
-<p>Handcrafted Tausug crêpes with a modern twist—rich caramelized coconut filling infused with Ube and Matcha flavors.</p>
+        <div class="hero-content">
 
-<a href="#order" class="btn">Answer Survey</a>
-</div>
+            <div class="hero-title-small">THE</div>
 
-<div>
-<img src="681975355_26331801386522110_7886286037163583750_n.jpg">
-</div>
+            <h1 class="hero-title">GOLDEN ROLL</h1>
 
-</div>
-</section>
+            <p class="hero-subtitle">
+                LUXURIOUS STREET SNACKS
+            </p>
 
-<!-- ABOUT -->
+            <div class="divider"></div>
 
-<section id="about">
-<div class="container">
+            <button class="gold-btn"
+            onclick="showPage('survey')">
+                TAKE OUR SURVEY
+            </button>
 
-<h2>About The Golden Roll</h2>
+        </div>
 
-<div class="about-grid">
+    </section>
 
-<div>
+    <!-- FEATURES -->
 
-<p>The Golden Roll was created with one simple vision: to celebrate and elevate Filipino heritage through food.</p>
+    <section class="features">
+        <div class="container">
 
-<p>Inspired by the traditional Filipino delicacy Daral, our brand brings a modern twist to a beloved local snack while honoring its cultural roots.</p>
+            <div class="feature-grid">
 
-<p>By combining traditional ingredients with modern flavors, we transform a classic treat into something exciting for today's generation.</p>
+                <div class="feature-item">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h3>Premium Ingredients</h3>
+                </div>
 
-</div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>About Our Heritage</h3>
+                </div>
 
-<div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Ethically Made</h3>
+                </div>
 
-<h3>What is Daral?</h3>
+                <div class="feature-item">
+                    <i class="fa-solid fa-flask"></i>
+                    <h3>No Preservatives</h3>
+                </div>
 
-<p>Daral is a traditional Filipino dessert made from a thin crepe rolled and filled with sweet coconut.</p>
+                <div class="feature-item">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>Made For Every Moment</h3>
+                </div>
 
-<p>It originated from the Tausug people of the Sulu Archipelago and is known for its delicate wrapper made from glutinous rice and coconut milk.</p>
+            </div>
 
-</div>
+        </div>
+    </section>
 
-</div>
+    <!-- PRODUCTS -->
 
-</div>
-</section>
+    <section class="products">
 
-<!-- PRODUCTS -->
+        <div class="container">
 
-<section id="products">
+            <h2 class="section-title">
+                AVAILABLE FLAVORS
+            </h2>
 
-<div class="container">
+            <div class="product-grid">
 
-<h2>Product Flavors</h2>
+                <div class="product-card">
 
-<div class="product-grid">
+                    <div class="product-image">
+                        <img src="Gemini_Generated_Image_66he0l66he0l66he.png"
+                        alt="Classic Daral">
+                    </div>
 
-<div class="product-card">
-<img src="Gemini_Generated_Image_66he0l66he0l66he.png">
-<h3>Classic</h3>
-<p>Traditional coconut filling</p>
-</div>
+                    <div class="product-info">
+                        <h3>Classic Daral</h3>
+                    </div>
 
-<div class="product-card">
-<img src="Ubedaral0505.png">
-<h3>Ube</h3>
-<p>Sweet Filipino purple yam flavor</p>
-</div>
+                </div>
 
-<div class="product-card">
-<img src="Matchadaral0505.png">
-<h3>Matcha</h3>
-<p>Modern Japanese tea flavor</p>
-</div>
+                <div class="product-card">
 
-<div class="product-card">
-<img src="ClassicDaral0505.png">
-<h3>Solo Pack</h3>
-<p>3 pieces per pack</p>
-</div>
+                    <div class="product-image">
+                        <img src="Ubedaral0505.png"
+                        alt="Ube Daral">
+                    </div>
 
-</div>
+                    <div class="product-info">
+                        <h3>Ube Daral</h3>
+                    </div>
 
-<p style="margin-top:30px">
-Price: ₱15 per piece | ₱39 per pack
-</p>
+                </div>
 
-</div>
+                <div class="product-card">
 
-</section>
+                    <div class="product-image">
+                        <img src="Matchadaral0505.png"
+                        alt="Matcha Daral">
+                    </div>
 
-<!-- TRIAL -->
+                    <div class="product-info">
+                        <h3>Matcha Daral</h3>
+                    </div>
 
-<section id="trial">
+                </div>
 
-<div class="container trial">
+            </div>
 
-<h2>Trial Run</h2>
+        </div>
 
-<div class="trial-box">
-
-<p><b>Date:</b> May 04 – May 16</p>
-<p><b>Location:</b> Taytay Tiangge</p>
-<p><b>Target Production:</b> 50 – 60 pcs</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ORDER / SURVEY -->
-
-<section id="order">
-
-<div class="container" style="text-align:center">
-
-<h2>Customer Survey</h2>
-
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSey_WJJ1exBpzRoGpzhQqt-2P3ane4iZGwAK6XJkVBefV-2vQ/viewform?embedded=true"
-width="100%"
-height="600"
-frameborder="0"
-marginheight="0"
-marginwidth="0">
-Loading…
-</iframe>
-
-</div>
+    </section>
 
 </section>
 
-<!-- CONTACT -->
+<!-- =========================
+     ABOUT PAGE
+========================= -->
 
-<section id="contact">
+<section id="about" class="page">
 
-<div class="container contact-grid">
+    <section class="about-page">
 
-<div class="contact-info">
+        <div class="container about-wrapper">
 
-<h2>Contact Us</h2>
+            <div class="story-card">
 
-<p><b>Business Name:</b> Golden Touch Inc.</p>
-<p><b>Phone:</b> +639467307758</p>
+                <h2>Our Story</h2>
 
-<p><b>Address:</b><br>
-123 Manila East Road<br>
-Brgy San Juan Taytay Rizal
-</p>
+                <p>
+                    The Golden Roll was created with one simple vision:
+                    to celebrate and elevate Filipino heritage through food.
+                    Inspired by the traditional Filipino delicacy Daral,
+                    our brand brings a modern twist to a beloved local snack.
+                    While many Filipino delicacies remain rooted in tradition,
+                    we believe they can also evolve with creativity and
+                    innovation while still honoring their cultural origins.
+                    <br><br>
 
-</div>
+                    Our goal is to introduce Daral to a wider audience and
+                    allow more Filipinos to rediscover the beauty of local
+                    delicacies. By combining traditional ingredients with
+                    modern flavors, we transform a classic treat into
+                    something exciting, fresh, and accessible for today's generation.
+                    <br><br>
 
-<div>
+                    At The Golden Roll, every bite represents a connection
+                    between Filipino roots and modern taste. We believe local
+                    delicacies deserve to be appreciated not only as traditional
+                    foods, but as innovative culinary experiences that proudly
+                    showcase Filipino culture.
+                    <br><br>
 
-<img src="The Golden Roll.png">
+                    Through this project, we aim to inspire more people
+                    to support, appreciate, and celebrate Filipino products.
+                </p>
 
-</div>
+            </div>
 
-</div>
+            <div class="story-card">
+
+                <h2>What is Daral?</h2>
+
+                <p>
+                    Daral is a traditional Filipino dessert made from a thin
+                    crepe rolled into a cylindrical shape and filled with
+                    sweetened coconut. It is a delicacy that originated from
+                    the Tausug people of the Sulu Archipelago in the southern Philippines.
+                    <br><br>
+
+                    The outer wrapper of Daral is similar to a lumpia wrapper,
+                    but it is traditionally made from a batter of ground glutinous
+                    rice mixed with coconut milk, giving it a soft and delicate texture.
+                    <br><br>
+
+                    Inside the roll is a sweet filling made from shredded coconut
+                    cooked with sugar, creating a rich and flavorful coconut filling
+                    known as hinti.
+                    <br><br>
+
+                    Daral is commonly enjoyed as a snack or dessert and is known
+                    for its simple ingredients, delicate texture, and naturally
+                    sweet coconut flavor.
+                </p>
+
+            </div>
+
+            <div class="story-card">
+
+                <h2>Our Modern Take</h2>
+
+                <p>
+                    The Golden Roll transforms the traditional Daral into a modern
+                    Filipino snack experience. While we preserve the authentic coconut
+                    filling that makes Daral special, we also introduce new and exciting
+                    flavor variations designed to appeal to modern tastes.
+                    <br><br>
+
+                    By blending tradition with innovation, we aim to make Daral more
+                    accessible and appreciated by the new generation of Filipino snack lovers.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </section>
+
+<!-- =========================
+     SURVEY PAGE
+========================= -->
+
+<section id="survey" class="page">
+
+    <section class="survey-page">
+
+        <div class="container">
+
+            <h2 class="survey-title">
+                Customer Survey
+            </h2>
+
+            <div class="form-wrapper">
+
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSey_WJJ1exBpzRoGpzhQqt-2P3ane4iZGwAK6XJkVBefV-2vQ/viewform?embedded=true">
+                </iframe>
+
+            </div>
+
+            <div class="return-btn">
+                <button class="gold-btn"
+                onclick="showPage('home')">
+                    Return to Home
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<p>© 2026 Golden Touch Inc. | The Golden Roll</p>
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3 class="footer-title">
+                    Golden Touch Inc.
+                </h3>
+
+                <p class="footer-text">
+                    Address: 123 Manila East Road,
+                    Brgy San Juan Taytay Rizal
+                    <br><br>
+
+                    Phone: +639467307758
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3 class="footer-title">
+                    Social Media
+                </h3>
+
+                <div class="socials">
+
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <h3 class="footer-title">
+                    The Golden Roll
+                </h3>
+
+                <p class="footer-text">
+                    Luxury Filipino delicacies inspired by heritage,
+                    innovation, and modern Filipino taste.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </footer>
+
+<script>
+
+const pages = document.querySelectorAll('.page');
+
+function showPage(pageId){
+
+    pages.forEach(page=>{
+        page.classList.remove('active');
+    });
+
+    document.getElementById(pageId)
+    .classList.add('active');
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+
+}
+
+</script>
 
 </body>
 </html>
